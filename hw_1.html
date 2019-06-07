@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework 1</title>
+</head>
+<body>
+    <script>
+        console.log('Hello!');
+        console.error('Sorry! Something is wrong!');
+
+        console.log("Level 1");
+        console.group();
+        console.log("Level 2");
+        console.group();
+        console.log("Level 3");
+        console.groupEnd();
+        console.log("Back to level 2");
+        console.groupEnd();
+        console.log("Back to level 1");
+
+        console.info('Final result:', 225);
+        console.table(['apple', 'lemon', 'banana']);
+
+        /**************************/
+        var text = 'let`s go';
+        var count='count list';
+        var error='ERROR!!!';
+        var table=['potato', 'tomamo','cucumber'];
+        var time='timer';
+        console.log(text);
+        console.count(count);
+        console.error(error);
+        console.table(table);
+
+        console.time(time);
+        console.timeEnd(time);
+    </script>
+</body>
+</html>

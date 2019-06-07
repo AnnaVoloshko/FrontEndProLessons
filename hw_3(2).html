@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework 3</title>
+</head>
+<body>
+    <script>
+        var valutaFirst=prompt('Внимание! Производится конвертирование только для таких валют как: гривна, евро и доллар. Введите валюту, которую вы хотите конвертировать');
+        var valutaSecond=prompt('Введите валюту, в которую вы хотите конвертировать деньги');
+        var money=+prompt('Введите сумму');
+        var result=0, nameOfMoneyFirst;
+
+        if (valutaFirst=='гривна' && valutaSecond=='доллар'){
+            result=money/27;
+        } else if (valutaFirst=='доллар' && valutaSecond=='гривна'){
+            result=money*26.2;
+        }
+
+        if (valutaFirst=='доллар' && valutaSecond=='евро'){
+            result=money/89.6;
+        } else if (valutaFirst=='евро' && valutaSecond=='доллар'){
+            result=money*89.15;
+        }
+
+        if (valutaFirst=='гривна' && valutaSecond=='евро'){
+            result=money/29.61;
+        } else if (valutaFirst=='евро' && valutaSecond=='гривна'){
+            result=money*29;
+        }
+
+        prompt('Конвертация валюты закончена. Результат: '+result);
+    </script>
+</body>
+</html>

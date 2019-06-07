@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random number</title>
+</head>
+<body>
+    <script>
+        var guess, i=0,
+            rand = Math.round(Math.random()*5);
+        while (guess !== rand) {
+            guess =+prompt('Guess a number!');
+            alert('Try again!');
+            console.log(guess, rand);
+        }    
+    </script>
+</body>
+</html>

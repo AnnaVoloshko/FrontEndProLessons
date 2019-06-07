@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework 3</title>
+</head>
+<body>
+    <script>
+        var age=+prompt('Укажите свой возраст!');
+        var experience=+prompt('Какой у вас опыт работы в данной области?');
+
+        if ((isNaN(age)||age<=0)||(isNaN(experience)||experience<=0)){
+                    console.log('Введите число!');
+        } else if (age>=30 && experience>=3){
+                    console.log('Вы нам подходите!');
+        } else console.log('Извините, но вы нам не подходите. До свидания!')
+    </script>
+</body>
+</html>
