@@ -1,0 +1,79 @@
+body{
+    width: 100%;
+    margin: auto;
+    background-image: url('images/main.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgb(154, 205, 50, 0.7);
+    font-family: 'Special Elite', cursive;
+}
+*{
+    box-sizing: border-box;
+}
+.container{
+    width: 1024px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+}
+.card{
+    display: flex;
+    flex-direction: column-reverse;
+    height: 500px;
+    width: 30%;
+    border: 1px solid #000;
+    padding: 5px;
+    position: relative;
+    margin-right: 5px;
+    background-color: rgb(255, 255, 255, 0.9);
+}
+.background-img{
+    position: absolute;
+    top: 0;
+    height: 476px;
+    z-index: 0;
+}
+.name{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 30px;
+    background-color: rgb(192, 192, 192, 0.7);
+    border-radius: 3px;
+    padding-top: 9px;
+}
+.info{
+    z-index: 3;
+}
+.cover-blok{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.health,
+.distance{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(188, 143, 143, 0.5);
+    padding: 12px  0 5px 0;
+    border-radius: 3px;
+    width: 49%;
+    
+}
+.distance{
+    background-color: rgb(184, 134, 11, 0.5);
+}
+
+.exhausted{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 42px;
+    text-align: center;
+    color: red;
+    z-index: 4;
+    background-color: rgb(000, 000, 000, 0.7);
+    padding: 185px 0 229px 0;
+}
