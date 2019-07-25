@@ -1,31 +1,35 @@
-function MilitaryResource(image, name, health, distance) {
-    this.image = image;
-    this.name = name;
-    this.health = health;
-    this.maxHealth = 150;
-    this.distance = distance;
-    this.maxDistance = 200;
-}
+var MilitaryResource = (function(){
+    function MilitaryResource(image, name, health, distance) {
+        this.image = image;
+        this.name = name;
+        this.health = health;
+        this.maxHealth = 150;
+        this.distance = distance;
+        this.maxDistance = 200;
+    }
+
+    MilitaryResource.prototype.isReadyToMove = function () {
+        return this.maxDistance <= this.distance;
+    };
+
+    MilitaryResource.prototype.isReadyToFight = function () {
+        return this.health > 0;
+    };
+
+    MilitaryResource.prototype.restore = function () {
+        this.health = this.maxHealth;
+        this.distance = 0;
+    };
+
+    MilitaryResource.prototype.clone = function () {
+        return new MilitaryResource(this.image, this.name, this.health, this.distance)
+    };
+
+    return MilitaryResource;
+}());
 
 
-MilitaryResource.prototype.isReadyToMove = function () {
-    return this.maxDistance <= this.distance;
-};
-
-MilitaryResource.prototype.isReadyToFight = function () {
-    return this.health > 0;
-};
-
-MilitaryResource.prototype.restore = function () {
-    this.health = this.maxHealth;
-    this.distance = 0;
-};
-
-MilitaryResource.prototype.clone = function () {
-    return new MilitaryResource(this.image, this.name, this.health, this.distance)
-};
-
-
+var Squad = (function () {
 function Squad(defaultResources) {
     this.squad = [];
     if (defaultResources) this.combineResources(defaultResources);
@@ -37,7 +41,6 @@ Squad.prototype.isReadyToMove = function () {
         return element.isReadyToMove();
     })
 };
-
 
 Squad.prototype.cloneResource = function () {
     return this.squad.map(function (element) {
@@ -51,7 +54,6 @@ Squad.prototype.getReadyToMoveResources = function () {
     })
 };
 
-
 Squad.prototype.isReadyToFight = function () {
     return this.squad.every(function (element) {
         return element.isReadyToFight();
@@ -61,8 +63,8 @@ Squad.prototype.isReadyToFight = function () {
 Squad.prototype.restore = function () {
     return this.squad.every(function (element) {
         return element.restore();
-    })
-    return this.squad;
+    });
+    return this.Squad;
 };
 
 Squad.prototype.combineResources = function (defaultResources) {
@@ -71,6 +73,24 @@ Squad.prototype.combineResources = function (defaultResources) {
     })
 };
 
+Squad.prototype.addCard = function() {
+    document.getElementById('container').innerHTML += '<div class="card"></div>';
+    document.getElementById('container').lastChild.innerHTML += '<div class="background"></div>';
+    document.getElementsByClassName('background')[i].innerHTML += '<img class="background-img" src="' + this[i].image + '" alt="picture"></img>';
+    document.getElementById('container').lastChild.innerHTML += '<div class="info"></div>';
+    document.getElementsByClassName('info')[i].innerHTML += '<div class="name">' + this[i].name + '</div>';
+    document.getElementsByClassName('info')[i].innerHTML += '<div class="cover-blok"></div>';
+    document.getElementsByClassName('cover-blok')[i].innerHTML += '<div class="health" onclick="shake(this), dye(this)"></div>';
+    document.getElementsByClassName('health')[i].innerHTML += '<div class="current-health">' + this[i].health + '</div>';
+    document.getElementsByClassName('health')[i].innerHTML += '<div class="split">/</div>';
+    document.getElementsByClassName('health')[i].innerHTML += '<div class="max-health">' + this[i].maxHealth + '</div>';
+    document.getElementsByClassName('cover-blok')[i].innerHTML += '<div class="distance" onclick="shake(this), exhausted(this)"></div>';
+    document.getElementsByClassName('distance')[i].innerHTML += '<div class="current-distance">' + this[i].distance + '</div>';
+    document.getElementsByClassName('distance')[i].innerHTML += '<div class="split">/</div>';
+    document.getElementsByClassName('distance')[i].innerHTML += '<div class="max-distance">' + this[i].maxDistance + '</div>';
+    }
+    return Squad;
+}());
 
 
 //CARDS
@@ -80,27 +100,7 @@ var cards = [
     jake = new MilitaryResource("images/Jake_the_dog.png", "Jake the dog", 150, 200),
     bmo = new MilitaryResource("images/bmo1.png", "BMO", 150, 200)
 ]
-
-function addCards() {
-    for (i = 0; i < this.length; i++) {
-        document.getElementById('container').innerHTML += '<div class="card"></div>';
-        document.getElementById('container').lastChild.innerHTML += '<div class="background"></div>';
-        document.getElementsByClassName('background')[i].innerHTML += '<img class="background-img" src="' + this[i].image + '" alt="picture"></img>';
-        document.getElementById('container').lastChild.innerHTML += '<div class="info"></div>';
-        document.getElementsByClassName('info')[i].innerHTML += '<div class="name">' + this[i].name + '</div>';
-        document.getElementsByClassName('info')[i].innerHTML += '<div class="cover-blok"></div>';
-        document.getElementsByClassName('cover-blok')[i].innerHTML += '<div class="health" onclick="shake(this), dye(this)"></div>';
-        document.getElementsByClassName('health')[i].innerHTML += '<div class="current-health">' + this[i].health + '</div>';
-        document.getElementsByClassName('health')[i].innerHTML += '<div class="split">/</div>';
-        document.getElementsByClassName('health')[i].innerHTML += '<div class="max-health">' + this[i].maxHealth + '</div>';
-        document.getElementsByClassName('cover-blok')[i].innerHTML += '<div class="distance" onclick="shake(this), exhausted(this)"></div>';
-        document.getElementsByClassName('distance')[i].innerHTML += '<div class="current-distance">' + this[i].distance + '</div>';
-        document.getElementsByClassName('distance')[i].innerHTML += '<div class="split">/</div>';
-        document.getElementsByClassName('distance')[i].innerHTML += '<div class="max-distance">' + this[i].maxDistance + '</div>';
-    }
-}
-addCards.call(cards);
-
+card = new Squad(cards);
 
 var list = [];
 list = document.getElementsByClassName('health');
@@ -129,4 +129,9 @@ function exhausted(current) {
       var element = current.closest('.card');
       element.innerHTML += '<div class="exhausted">I need time to rest</div>';
     }
-  }
+};
+
+for(var i=0; i<cards.length;i++) {
+    card.addCard.call(cards);
+    console.log(this)
+};
